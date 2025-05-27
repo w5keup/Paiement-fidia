@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paiement Fidia Pharma</title>
+  <!-- Professional metadata for SEO and social sharing -->
+  <meta name="description" content="Payez en toute sécurité vos produits Fidia Pharma. Plateforme de paiement en ligne pour médecins et patients, avec prise en charge Stripe, Visa et Mastercard." />
+  <meta name="keywords" content="Fidia Pharma, paiement, sécurisé, Stripe, Visa, Mastercard, médecin, pharmacie, produits pharmaceutiques, France" />
+  <meta name="author" content="Fidia Pharma" />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Paiement sécurisé Fidia Pharma" />
+  <meta property="og:description" content="Payez vos produits Fidia Pharma en toute sécurité via notre plateforme officielle." />
+  <meta property="og:url" content="https://www.fidiapharma.com/paiement" />
+  <meta property="og:image" content="https://www.fidiapharma.com/wp-content/uploads/2021/10/logo-fidia-header.svg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Paiement sécurisé Fidia Pharma" />
+  <meta name="twitter:description" content="Payez vos produits Fidia Pharma en toute sécurité via notre plateforme officielle." />
+  <meta name="twitter:image" content="https://www.fidiapharma.com/wp-content/uploads/2021/10/logo-fidia-header.svg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="https://aesthetics.fidiapharma.com/wp-content/uploads/2022/03/LOGO_fidia-original.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/4e9c3e859c.js" crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body class="bg-white text-gray-800 splash-active">
+
+  <!-- Splash Screen -->
+  <div id="splash" class="fixed inset-0 flex items-center justify-center">
+    <div class="text-center">
+      <img src="https://www.fidiapharma.com/wp-content/uploads/2021/10/logo-fidia-header.svg" 
+           alt="Fidia Logo" 
+           class="h-20 mx-auto mb-6 animate-pulse" />
+      <div class="text-white text-2xl font-semibold mb-6">
+        Chargement du système de paiement...
+      </div>
+      <div class="flex justify-center">
+        <div class="animate-spin h-10 w-10 border-4 border-white border-t-transparent rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-blue-800 text-white shadow-md w-full z-50 fixed top-0 left-0 right-0">
+    <div class="flex items-center gap-3">
+      <a href="https://www.fidiapharma.com" aria-label="Fidia Pharma homepage">
+        <img src="https://www.fidiapharma.com/wp-content/uploads/2021/10/logo-fidia-header.svg" alt="Fidia Logo" class="h-10" />
+      </a>
+      <h1 class="text-lg font-semibold">Paiement sécurisé</h1>
+    </div>
+  </header>
+
+  <main class="flex flex-col w-full min-h-screen bg-slate-100 pt-20">
+    <div class="flex flex-1 items-center justify-center w-full p-4">
+      <div class="flex rounded-2xl shadow-2xl bg-white overflow-hidden form-container">
+        
+        <!-- Sidebar with Progress -->
+        <aside id="sidebar" class="bg-gradient-to-b from-blue-100 to-indigo-100 border-r border-blue-200">
+          <div class="flex-1 relative">
+            <div class="absolute inset-0 flex flex-col justify-center p-4">
+              <div class="space-y-4">
+                <!-- Progress Row 1 -->
+                <div class="progress-row active" data-step="1" onclick="goToStep('step1')">
+                  <div class="progress-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="progress-text">
+                    <div class="font-semibold text-sm">Code DV - Médecin</div>
+                  </div>
+                </div>
+
+                <!-- Progress Row 2 -->
+                <div class="progress-row" data-step="2" onclick="goToStep('step2')">
+                  <div class="progress-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                  </div>
+                  <div class="progress-text">
+                    <div class="font-semibold text-sm">Vos coordonnées</div>
+                  </div>
+                </div>
+
+                <!-- Progress Row 3 -->
+                <div class="progress-row" data-step="3" onclick="goToStep('step3')">
+                  <div class="progress-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293A1 1 0 005 16v0a1 1 0 001 1h11M9 19a2 2 0 100 4 2 2 0 000-4zm8 0a2 2 0 100 4 2 2 0 000-4z"></path>
+                    </svg>
+                  </div>
+                  <div class="progress-text">
+                    <div class="font-semibold text-sm">Produits et paiement</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 sm:flex"></main>
+          <div class="p-6 sm:p-8 w-full max-w-lg mx-auto text-center">
+            
+            <!-- Step 1: Doctor Code -->
+            <section id="step1" class="main-content-section active">
+              <h2 class="text-xl font-bold mb-2 text-blue-800 text-center">Code DV - Médecin</h2>
+              <p class="mb-4 text-gray-600 text-center">Saisissez manuellement ou scannez le QR code fourni par votre médecin</p>
+              
+              <div class="space-y-4">
+                <input type="text" id="depositCode" placeholder="Code dépôt-vente (ex: DV123)" 
+                       class="border rounded-lg p-3 w-full text-center font-mono" />
+                
+                <!-- Doctor Info Display -->
+                <div id="doctorInfo" class="hidden p-3 bg-blue-50 rounded-lg">
+                  <div class="text-sm text-gray-600">Médecin trouvé:</div>
+                  <input type="text" id="doctorName" readonly 
+                         class="w-full text-center font-semibold text-blue-800 bg-transparent border-none p-1" />
+                </div>
+
+                <!-- QR Code Scanner -->
+                <div class="mt-4">
+                  <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 16h4.01M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"></path>
+                      </svg>
+                      Scanner QR Code
+                    </h3>
+                    
+                    <!-- QR Scanner Toggle Button -->
+                    <button type="button" id="qrScanToggle" 
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 mb-3">
+                      <span id="qrScanText">📷 Activer la caméra</span>
+                    </button>
+                    
+                    <!-- QR Scanner Video Container -->
+                    <div id="qrScannerContainer" class="hidden">
+                      <div class="relative bg-black rounded-lg overflow-hidden">
+                        <video id="qrVideo" class="w-full h-64 object-cover" autoplay muted></video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div class="w-48 h-48 border-2 border-white border-dashed rounded-lg"></div>
+                        </div>
+                        <div id="qrScanStatus" class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white text-center py-2 text-sm">
+                          Positionnez le QR code dans le cadre
+                        </div>
+                      </div>
+                      
+                      <!-- QR Scanner Controls -->
+                      <div class="flex gap-2 mt-3">
+                        <button type="button" id="qrStopBtn" 
+                                class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                          ⏹ Arrêter
+                        </button>
+                        <button type="button" id="qrSwitchCamera" 
+                                class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                          🔄
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <!-- QR Scanner Status -->
+                    <div id="qrScanResult" class="mt-3 text-sm text-center" style="display: none;"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex justify-center mt-6">
+                <button onclick="goToStep('step2')" class="arrow-btn flex items-center justify-center px-6 py-2 text-base font-semibold min-w-[110px]">
+                  Suivant
+                </button>
+              </div>
+            </section>
+
+            <!-- Step 2: Customer Info -->
+            <section id="step2" class="main-content-section">
+              <h2 class="text-xl font-bold mb-2 text-blue-800 text-center">Vos coordonnées</h2>
+              <p class="mb-4 text-gray-600 text-center">Veuillez remplir vos informations personnelles. Elles seront utilisées pour l'envoi de votre facture et du récapitulatif par email.</p>
+              
+              <div class="space-y-3">
+                <input type="text" id="fullName" placeholder="Nom et prénom" class="w-full border rounded-lg p-3" />
+                <input type="email" id="email" placeholder="Adresse email" class="w-full border rounded-lg p-3" />
+                <textarea id="address" placeholder="Adresse (optionnel)" rows="3" 
+                          class="w-full border rounded-lg p-3 resize-none"></textarea>
+                <!-- Billing Information (reduced) -->
+                <!-- Removed: Nom sur la facture, Société, Pays -->
+                <input type="text" id="billingCity" placeholder="Ville (optionnel)" class="w-full border rounded-lg p-3" />
+                <input type="text" id="billingZip" placeholder="Code postal (optionnel)" class="w-full border rounded-lg p-3" />
+              </div>
+              
+              <div class="flex justify-center mt-6 gap-3">
+                <button onclick="goToStep('step1')" class="arrow-btn back-btn flex items-center justify-center px-6 py-2 text-base font-semibold min-w-[110px] bg-gray-200 text-blue-800 border border-blue-400 hover:bg-gray-300 hover:text-blue-900 transition-colors">
+                  Retour
+                </button>
+                <button onclick="goToStep('step3')" class="arrow-btn flex items-center justify-center px-6 py-2 text-base font-semibold min-w-[110px]">
+                  Suivant
+                </button>
+              </div>
+            </section>
+
+            <!-- Step 3: Products & Payment -->
+            <section id="step3" class="main-content-section">
+              <h2 class="text-xl font-bold mb-2 text-blue-800 text-center">Produits & Paiement</h2>
+              <p class="mb-4 text-gray-600 text-center">Sélectionnez vos produits et saisissez vos informations de paiement</p>
+              
+              <div id="productsContainer" class="mb-4">
+                <div class="text-gray-500 text-center py-8">
+                  Veuillez d'abord saisir un code médecin valide
+                </div>
+              </div>
+              
+              <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                <div class="text-sm font-medium text-blue-800">Montant HT: <span id="productsTotal">0.00</span> €</div>
+                <div class="text-sm font-medium text-blue-800">Montant TVA: <span id="productsTotal">0.00</span> €</div>
+                <div class="text-sm font-medium text-blue-800">Total TTC: <span id="productsTotal">0.00</span> €</div>
+              </div>
+
+              <!-- Stripe Card Element -->
+              <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                <h3 class="text-sm font-semibold text-gray-700 mb-3">Informations de paiement</h3>
+                <!-- Payment Request Button for Apple Pay / Google Pay -->
+                <div id="payment-request-button" class="mb-4"></div>
+                <div id="card-element" class="bg-white border rounded-lg p-3 min-h-[44px]">
+                  <!-- Stripe Elements will create form elements here -->
+                </div>
+                <div id="card-errors" class="text-red-600 text-sm mt-2" role="alert"></div>
+              </div>
+              
+              <div class="flex justify-center mt-6 gap-3">
+                <button onclick="goToStep('step2')" class="arrow-btn back-btn flex items-center justify-center px-6 py-2 text-base font-semibold min-w-[110px] bg-gray-200 text-blue-800 border border-blue-400 hover:bg-gray-300 hover:text-blue-900 transition-colors">
+                  Retour
+                </button>
+                <button id="payBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg min-w-[170px]" disabled>
+                  <span id="payBtnText">Payer maintenant</span>
+                  <div id="payBtnSpinner" class="hidden ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                </button>
+              </div>
+            </section>
+
+          </div>
+        </main>
+      </div>
+    </div>
+  </main>
+
+  <!-- Payment methods footer -->
+  <footer class="w-full flex flex-col items-center py-4 bg-transparent fixed bottom-0 left-0 z-50 pointer-events-none">
+    <div class="flex flex-col sm:flex-row items-center gap-4 pointer-events-auto bg-white/90 px-6 py-2 rounded-full shadow-lg backdrop-blur">
+      <span class="text-sm text-blue-900 font-medium flex items-center gap-2">
+        <i class="fas fa-lock text-green-600" aria-hidden="true"></i>
+        Paiement sécurisé par
+      </span>
+      <div class="flex items-center gap-4 ml-0 sm:ml-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-7 w-auto grayscale opacity-60" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="h-7 w-auto grayscale opacity-60" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe" class="h-7 w-auto grayscale opacity-60" />
+      </div>
+    </div>
+  </footer>
+
+  <!-- Add QR Code Scanner Library -->
+  <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

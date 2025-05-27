@@ -1,0 +1,23 @@
+html, body {
+  overflow: hidden;
+  max-height: 100vh;
+  height: 100%;
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow: auto;
+    max-height: none;
+    height: auto;
+    position: static;
+    width: auto;
+  }
+}
+
+.center-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}

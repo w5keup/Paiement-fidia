@@ -1,0 +1,73 @@
+{
+  "DPKHODJA": {
+    "name": "DR KHODJA MOHAMMED",
+    "products": [
+      { "name": "HY-TISSUE PRP 50/TP02-03-50", "price": 120.00 }
+    ]
+  },
+  "DPROHAR": {
+    "name": "DR CAROLINE ROHART",
+    "products": [
+      { "name": "HYALONE FIDIA", "price": 49.00 }
+    ]
+  },
+  "DPMELET": {
+    "name": "DR JULIEN MELET",
+    "products": [
+      { "name": "HYALONE FIDIA", "price": 49.00 }
+    ]
+  },
+  "DPMONNIER": {
+    "name": "DR AGNES MONNIER",
+    "products": [
+      { "name": "HYALONE FIDIA", "price": 62.50 }
+    ]
+  },
+  "DPMOTHE": {
+    "name": "DR MOTHE-SIMA IOANA",
+    "products": [
+      { "name": "HYALONE FIDIA", "price": 49.00 }
+    ]
+  },
+  "DPNATHAN": {
+    "name": "DR NATHAN JEAN-LOUIS",
+    "products": [
+      { "name": "HY-TISSUE BMC 50cc", "price": 558.33 }
+    ]
+  },
+  "DPOULD": {
+    "name": "DOCTEUR OULD HENNIA AHMED",
+    "products": [
+      { "name": "HY-TISSUE PRP 20/TP02-01-20", "price": 75.00 },
+      { "name": "HY-TISSUE PRP 50/TP02-03-50", "price": 91.67 }
+    ]
+  },
+  "DPSEBAA": {
+    "name": "DR KARIM SEBAA",
+    "products": [
+      { "name": "HYMOVIS ONE 1SIR 32MG/4ML", "price": 163.33 },
+      { "name": "HYALONE SIR.60MG", "price": 125.00 },
+      { "name": "REPLASYN FIDIA", "price": 18.889 }
+    ]
+  },
+  "DPJOUVE": {
+    "name": "DR CERMOLACCE",
+    "products": [
+      { "name": "HY-TISSUE PRP 50/TP02-03-50", "price": 125.00 },
+      { "name": "HY-TISSUE BMC 50cc", "price": 670.00 }
+    ]
+  },
+  "DPCERMO": {
+    "name": "DR CERMOLACCE",
+    "products": [
+      { "name": "HY-TISSUE PRP 50/TP02-03-50", "price": 120.83 },
+      { "name": "HY-TISSUE BMC 50cc", "price": 670.00 }
+    ]
+  },
+  "DPWAELD": {
+    "name": "DR WAEL DAOUD",
+    "products": [
+      { "name": "HYALONE FIDIA", "price": 49.00 }
+    ]
+  }
+}
