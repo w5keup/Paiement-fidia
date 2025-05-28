@@ -497,17 +497,25 @@ function setupPaymentRequestButton() {
   });
 
   // Update the payment request total dynamically when product quantities change
+  const updatePaymentRequestTotal = () => {
+    const selectedProducts = getSelectedProducts();
+    let total = selectedProducts.reduce((sum, p) => sum + (p.ttc * p.quantity), 0);
+    if (total < 0.5) total = 0.5; // Stripe minimum
+    paymentRequest.update({
+      total: {
+        label: 'Total',
+        amount: Math.round(total * 100),
+      }
+    });
+  };
+
+  // Initial update
+  updatePaymentRequestTotal();
+
+  // Listen for changes in product quantities
   const productsContainer = document.getElementById('productsContainer');
   if (productsContainer) {
-    productsContainer.addEventListener('input', () => {
-      let total = parseFloat(document.querySelectorAll('#productsTotal')[2]?.textContent) || 1;
-      paymentRequest.update({
-        total: {
-          label: 'Total',
-          amount: Math.round(total * 100),
-        }
-      });
-    });
+    productsContainer.addEventListener('input', updatePaymentRequestTotal);
   }
 
   // Handle Payment Request events
