@@ -2,9 +2,6 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-const helmet = require('helmet');
-const cors = require('cors');
-const morgan = require('morgan');
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 // Initialize Stripe
@@ -12,24 +9,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Security middleware
-app.use(
-  helmet({
-    contentSecurityPolicy: false // Disable Helmet's CSP
-  })
-);
-
-// Allow all images, scripts, and styles for development (CSP override)
-app.use((req, res, next) => {
-  res.setHeader(
-    "Content-Security-Policy",
-    "default-src * 'self' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval' data:; style-src * 'unsafe-inline' data:; img-src * data: blob:;"
-  );
-  next();
-});
-app.use(cors());
-app.use(morgan('combined'));
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, '../frontend')));
@@ -450,17 +429,6 @@ app.post('/create-detailed-invoice', async (req, res) => {
       error: error.message 
     });
   }
-});
-
-// Global error handler
-app.use((err, req, res, next) => {
-  console.error('Server error:', err);
-  res.status(500).json({ success: false, error: 'Internal server error' });
-});
-
-// Serve index.html for all other routes (for SPA support)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 app.listen(PORT, () => {
