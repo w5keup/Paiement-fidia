@@ -1,0 +1,15 @@
+# Ignore environment files
+.env
+
+# Ignore node_modules
+node_modules/
+public/frontend/node_modules/
+public/server/node_modules/
+
+# Ignore uploads and sensitive data
+public/server/uploads/
+public/server/payments.json
+public/server/submissions.json
+
+# Ignore logs
+*.log

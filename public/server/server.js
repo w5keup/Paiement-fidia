@@ -2,6 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 // Initialize Stripe
@@ -9,6 +12,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Security middleware
+app.use(helmet());
+app.use(cors());
+app.use(morgan('combined'));
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, '../frontend')));
@@ -429,6 +437,12 @@ app.post('/create-detailed-invoice', async (req, res) => {
       error: error.message 
     });
   }
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Server error:', err);
+  res.status(500).json({ success: false, error: 'Internal server error' });
 });
 
 app.listen(PORT, () => {
